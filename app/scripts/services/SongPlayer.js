@@ -68,6 +68,10 @@
 //     @type {Object}
         SongPlayer.currentSong = null;
 
+//      @desc current song volume from 0-100
+//      @type {number}
+        SongPlayer.volume = 50;
+
 //        @function SongPlayer.play(song)
 //        @desc plays a song from the beginning if the song has not already started and continues playing the song from where it left off if not
 //        @params {Object} song
@@ -129,6 +133,12 @@
                   currentBuzzObject.setTime(time);
                 }
             };
+
+            SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
+            }
+        };
 
         return SongPlayer;
     }
