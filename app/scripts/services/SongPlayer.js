@@ -143,6 +143,16 @@
             }
         };
 
+        SongPlayer.toggleMute = function() {
+        if (currentBuzzObject.isMuted()) {
+            currentBuzzObject.unmute();
+            SongPlayer.currentSong.muted = false;
+        } else {
+            currentBuzzObject.mute();
+            SongPlayer.currentSong.muted = true;
+        }
+    };
+
         return SongPlayer;
     }
 
