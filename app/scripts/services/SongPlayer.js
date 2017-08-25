@@ -24,14 +24,13 @@
             currentBuzzObject.bind('timeupdate', function() {
                 $rootScope.$apply(function() {
                     SongPlayer.currentTime = currentBuzzObject.getTime();
+                    if (currentBuzzObject.isEnded()) {
+                        SongPlayer.next();
+                    }
                 });
             });
 
             SongPlayer.currentSong = song;
-
-// * @desc Current playback time (in seconds) of currently playing song
-// @type {Number}
-            SongPlayer.currentTime = null;
         };
 
 //        @function playSong
@@ -67,6 +66,10 @@
 //     @desc Active song object from list of songs
 //     @type {Object}
         SongPlayer.currentSong = null;
+
+// * @desc Current playback time (in seconds) of currently playing song
+// @type {Number}
+        SongPlayer.currentTime = null;
 
 //      @desc current song volume from 0-100
 //      @type {number}

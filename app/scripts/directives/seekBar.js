@@ -1,5 +1,5 @@
-(function(){
-    function seekBar($document){
+(function() {
+    function seekBar($document) {
         var calculatePercent = function(seekBar, event) {
             var offsetX = event.pageX - seekBar.offset().left;
             var seekBarWidth = seekBar.width();
@@ -15,8 +15,8 @@
             restrict: 'E',
             scope: {
                 onChange: '&'
-              },
-            link: function(scope, element, attributes){
+            },
+            link: function(scope, element, attributes) {
                 scope.value = 0;
                 scope.max = 100;
 
@@ -30,11 +30,11 @@
                     scope.max = newValue;
                 });
 
-                var percentString = function () {
+                var percentString = function() {
                     var value = scope.value;
                     var max = scope.max;
                     var percent = value / max * 100;
-                    return percent + '%';
+                    return percent + "%";
                 };
 
                 scope.fillStyle = function() {
@@ -52,18 +52,18 @@
                 };
 
                 scope.trackThumb = function() {
-                      $document.bind('mousemove.thumb', function(event){
-                          var percent = calculatePercent(seekBar, event);
-                          scope.$apply(function() {
-                              scope.value = percent * scope.max;
-                              notifyOnChange(scope.value);
-                          });
+                    $document.bind('mousemove.thumb', function(event) {
+                        var percent = calculatePercent(seekBar, event);
+                        scope.$apply(function() {
+                            scope.value = percent * scope.max;
+                            notifyOnChange(scope.value);
                         });
+                    });
 
-                      $document.bind('mouseup.thumb', function(event){
-                          $document.unbind('mousemove.thumb');
-                          $document.unbind('mouseup.thumb');
-                      });
+                    $document.bind('mouseup.thumb', function() {
+                        $document.unbind('mousemove.thumb');
+                        $document.unbind('mouseup.thumb');
+                    });
                 };
 
                 var notifyOnChange = function(newValue) {
@@ -71,11 +71,8 @@
                         scope.onChange({value: newValue});
                     }
                 };
-
             }
-
         };
-
     }
 
     angular
